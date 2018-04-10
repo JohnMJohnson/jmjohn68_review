@@ -1,15 +1,16 @@
 package test.java;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-import org.junit.jupiter.api.Test;
+import java.util.List;
+import java.util.Objects;
+import org.junit.Test;
 
 import main.java.Item;
 import main.java.SortAlgos;
 import main.java.SortDemoData;
 
-class SortDemoTest {
+public class SortDemoTest {
 
     SortDemoData data = new SortDemoData();
 
@@ -33,47 +34,34 @@ class SortDemoTest {
     /**
      * negativeArraySize checks that the correct exception is thrown for a negative array size
      */
-    @Test
+    @Test (expected=java.lang.NegativeArraySizeException.class)
     public void negativeArraySize() {
-        assertThrows(NegativeArraySizeException.class,
-                ()->{
-                    data.initializeArray("-3"); 
-                });
+        data.initializeArray("-3");
     }
     
     /**
      * NonIntegerValue checks that the correct exception is thrown when a non integer value is given
      */
-    @Test
+    @Test (expected=java.lang.NumberFormatException.class)
     public void NonIntegerValue() {
-        assertThrows(NumberFormatException.class,
-                ()->{
-                    data.initializeArray("5.5 7 9");
-                });
+        data.initializeArray("5.5 7 9");
     }
     
     /**
      * NoSuchElem checks that the correct exception is thrown for an empty array
      */
-    @Test
+    @Test (expected=java.util.NoSuchElementException.class)
     public void NoSuchElem() {
-        assertThrows(java.util.NoSuchElementException.class,
-                ()->{
-                    data.initializeArray("");
-                }); 
+    	data.initializeArray("");
     }
     
     /**
      * NoNumber checks that the correct exception is thrown if a character is given
      */
-    @Test
+    @Test (expected=java.lang.NumberFormatException.class)
     public void NoNumber() {
-        assertThrows(NumberFormatException.class,
-                ()->{
-                    data.initializeArray("5 8 y 4"); 
-                }); 
-         
-    }
+        	data.initializeArray("5 8 y 4"); 
+      }
     
     /**
      * SameNumber checks that duplicate numbers are removed
